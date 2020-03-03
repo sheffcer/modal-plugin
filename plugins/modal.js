@@ -13,8 +13,8 @@ function _createModal(options) {
                 <p>Lorem ipsum dolor sit.</p>
             </div>
             <div class="modal-footer">
-                <button>Ok</button>
-                <button>Cancel</button>
+                <button class="btn btn-primary">Ok</button>
+                <button class="btn btn-danger">Cancel</button>
             </div>
         </div>
     </div>
@@ -45,20 +45,26 @@ $.modal = function(options) {
     let closing = false
 
     return {
-    open() {
-        !closing && $modal.classList.add('open')
-    },
-    close() {
-        closing = true
-        $modal.classList.remove('open')
-        $modal.classList.add('hide')
-        setTimeout(() => {
-            $modal.classList.remove('hide')
-            closing = false
-        }, ANIMATION_SPEED)
-    },
-    destroy() {
-        $modal.remove()
-    }
+        open() {
+            !closing && $modal.classList.add('open')
+        },
+        close() {
+            closing = true
+            $modal.classList.remove('open')
+            $modal.classList.add('hide')
+            setTimeout(() => {
+                $modal.classList.remove('hide')
+                closing = false
+            }, ANIMATION_SPEED)
+        },
+        destroy() {
+            $modal.remove()
+        },
+        events() {
+            let buttons = $modal.querySelectorAll('.btn')
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener('click', this.close)
+            }
+        }
     }
 }
