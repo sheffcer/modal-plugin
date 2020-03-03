@@ -62,6 +62,8 @@ $.modal = function(options) {
         },
         events() {
             let buttons = $modal.querySelectorAll('.btn')
+            let closeModal = $modal.querySelector('.modal-close')
+            closeModal.addEventListener('click', this.close)
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].addEventListener('click', this.close)
             }

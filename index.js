@@ -5,3 +5,5 @@ const modal = $.modal({
     closing: false
 
 })
+
+const events = modal.events()
